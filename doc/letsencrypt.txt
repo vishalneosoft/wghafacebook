@@ -1,0 +1,2 @@
+sudo ./certbot-auto --nginx --nginx-server-root /opt/nginx/conf/ --nginx-ctl /opt/nginx/sbin/nginx
+sudo ./certbot-auto renew

@@ -1,0 +1,152 @@
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1><%= empty_state_title %></h1>
+  </div>
+</div>
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div id="upload" class="col-sm-6">
+        <h3>Deine Party bei wgha.de hochladen</h3>
+          <p>Erstelle zuerst deine Veranstaltung auf Facebook. Gib hier anschließend den Link zum Facebook Event ein.
+          z.B.: <%= link_to 'https://www.facebook.com/events/285261306205168', 'https://www.facebook.com/events/285261306205168' %>.</p>
+
+          <p>Wir holen den Event von Facebook.</p>
+          
+          <% unless current_user %>
+            <%= link_to '<img src="/fb_button/fb_login_button.png" style="max-width: 250px; max-height: 60px;" />'.html_safe, user_facebook_omniauth_authorize_path, :class => "", :"data-width" => 600, :"data-height" => 400 %>
+          <% else %>
+
+            <% if @event %>
+            <a href="<%= event_url(uuid: @event.uuid) %>">
+              <div class="alert alert-success">
+                <strong>Der Event ist hier hochgeladen:</strong>
+                <p><%= link_to event_url(uuid: @event.uuid, area: @event.area), event_url(uuid: @event.uuid, area: @event.area) %></p>
+              </div>
+            </a>
+            <% elsif @token && @token.errors.any? %>
+              <div class="row">
+                <div class="span8 offset3">
+                  <!-- Start Alerts -->
+                  <div class="alert alert-warning">
+                    <strong>Bitte überprüfe die folgenden Felder:</strong>
+                    <ul>
+                      <% @token.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                      <% end %>
+                      <% if @candidate %>
+                      <p><%= link_to event_url(uuid: @candidate.uuid, area: @candidate.area), event_url(uuid: @candidate.uuid, area: @candidate.area) %></p>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <!-- End Alerts -->
+                </div>
+              </div>
+            <% end %>
+          
+            <div class="form-container">
+              <form action="<%= upload_index_event_url %>" method="post" class="form-horizontal" accept-charset="UTF-8" novalidate>
+                <div class="control-group">
+                  <label class="control-label">Facebook Event Link:</label>
+                  <div class="controls">
+                    <input name="utf8" type="hidden" value="&#x2713;" />
+                    <input name="token[token]" class="span6" type="text" value="<%= "https://www.facebook.com/events/" + @token.token unless @token.nil? || @token.token.blank? %>">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button name="commit" type="submit" class="btn rounded">Party hochladen</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          <% end %>
+        <!-- /.form-container -->
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<div class="dark-wrapper">
+  <div class="container inner">
+    <% unless current_user %>
+      <div class="row">
+        <div id="upload" class="col-sm-6">
+          <h3>Deine Party bei wgha.de hochladen</h3>
+            <p>Erstelle zuerst deine Veranstaltung auf Facebook. Gib hier anschließend den Link zum Facebook Event ein.
+            z.B.: <%= link_to 'https://www.facebook.com/events/285261306205168', 'https://www.facebook.com/events/285261306205168' %>.</p>
+
+            <p>Wir holen den Event von Facebook.</p>
+
+            <% if @event %>
+            <a href="<%= event_url(uuid: @event.uuid) %>">
+              <div class="alert alert-success">
+                <strong>Der Event ist hier hochgeladen:</strong>
+                <p><%= link_to event_url(uuid: @event.uuid, area: @event.area), event_url(uuid: @event.uuid, area: @event.area) %></p>
+              </div>
+            </a>
+            <% elsif @token && @token.errors.any? %>
+              <div class="row">
+                <div class="span8 offset3">
+                  <!-- Start Alerts -->
+                  <div class="alert alert-warning">
+                    <strong>Bitte überprüfe die folgenden Felder:</strong>
+                    <ul>
+                      <% @token.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                      <% end %>
+                      <% if @candidate %>
+                      <p><%= link_to event_url(uuid: @candidate.uuid, area: @candidate.area), event_url(uuid: @candidate.uuid, area: @candidate.area) %></p>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <!-- End Alerts -->
+                </div>
+              </div>
+            <% end %>
+            <div class="form-container">
+              <form action="<%= upload_index_url %>" method="post" class="form-horizontal" accept-charset="UTF-8" novalidate>
+                <div class="control-group">
+                  <label class="control-label">Facebook Event Link:</label>
+                  <div class="controls">
+                    <input name="utf8" type="hidden" value="&#x2713;" />
+                    <input name="token[token]" class="span6" type="text" value="<%= "https://www.facebook.com/events/" + @token.token unless @token.nil? || @token.token.blank? %>">
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="controls">
+                    <button name="commit" type="submit" class="btn rounded">Party hochladen</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          <!-- /.form-container -->
+        </div>
+      </div>
+    <% else %>
+      <%= link_to '<img src="/fb_button/fb_logout_button.png" style="max-width: 350px; max-height: 100px; margin-left: -50px;" />'.html_safe, sign_out_url, :method => :delete %>
+    <% end %>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("a.popup").click(function(e) {
+      popupCenter($(this).attr("href"), $(this).attr("data-width"), $(this).attr("data-height"), "authPopup");
+      e.stopPropagation(); return false;
+    });
+    if(window.opener) {
+      window.close()
+      window.opener.location.reload(true);
+    }
+  });
+
+  function popupCenter(url, width, height, name) {
+    var left = (screen.width/2)-(width/2);
+    var top = (screen.height/2)-(height/2);
+    return window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
+  }
+
+</script>

@@ -1,0 +1,31 @@
+<% content_for :title do %>
+Partys &amp; Konzerte - Ausgehen im Nachtleben von Deutschland
+<% end %>
+
+<% content_for :description do %>
+Wir zeigen dir auf www.wgha.de wohin man abends ausgehen kann.
+<% end %>
+
+<% content_for :hreflang do %>
+<link rel="alternate" href="<%= root_url %>" hreflang="de-de" />
+<% end %>
+
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1>Was geht heute ab?</h1>
+  </div>
+</div>
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="portfolio">
+      <ul class="items col4">
+        <%= render partial: "city_select/area", collection: @areas %>
+      </ul>
+    </div>
+    <!-- /.portfolio -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->

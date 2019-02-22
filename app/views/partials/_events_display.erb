@@ -1,0 +1,75 @@
+<% if @events.blank? %>
+
+<%= render "partials/empty_state", :empty_state_title => "Noch ist nichts für #{@current_area.name} eingetragen. Schaue einfach später nochmals vorbei!" %>
+
+<% else %>
+
+<div class="offset"></div>
+
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1><strong><%= display_title %></strong></h1>
+    <div class="collapse navbar-collapse pull-right">
+    </div>
+  </div>
+</div>
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="portfolio">
+      <ul class="items col4">
+        <% for event in @events %>
+        <% next if event.photo.nil? %>
+        <li class="item video">
+          <a href="<%= event_url(uuid: event.uuid) %>">
+            <figure class="icon-overlay medium icn-more"><%= image_tag(event.photo.external_cache_thumb_path, :size => '333x222' , :alt => t(:alt_text_for_image, :event_name => h(event.name), :location_name => h(event.location), :area => @current_area.name)) %></figure>
+            <div class="image-caption">
+              <h3><%= event.name %></h3>
+              <span class="meta"><%= event.start_time.strftime("%H:%M") %>Uhr@<%= event.location %></span>
+            </div>
+          </a>
+        </li>
+        <!-- /.item -->
+        <script type="application/ld+json">
+        {
+          "@context" : "http://schema.org",
+          "@type" : "Event",
+          "name" : "<%= event.name %>",
+          "startDate" : "<%= event.start_time.utc.iso8601 %>",
+          "endDate" : "<%= (event.start_time + 4.hours).utc.iso8601 %>",
+          "performer": {
+            "@type": "PerformingGroup",
+            "name": "<%= event.name %>"
+            },
+          "offers": {
+            "@type": "Offer",
+            "availability": "http://schema.org/InStock",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "url": "<%= event_url( area: event.area, uuid: event.uuid) %>",
+            "validFrom": "<%= event.start_time.utc.iso8601 %>"
+            },
+          "location" : {
+            "@type" : "Place",
+            "name" : "<%= event.location %>",
+            "address" : {
+              "@type" : "PostalAddress",
+              "addressCountry":"DE",
+              "streetAddress" : "<%= event.street %>",
+              "addressLocality" : "<%= event.city %>",
+              "postalCode" : "<%= event.zipcode %>"
+            }
+          },
+          "image" : "<%= event.photo.url %>",
+          "description" : "<%= event.description.gsub("\n", " ") if event.description %>",
+          "url" : "<%= event_url( area: event.area, uuid: event.uuid) %>"
+        }
+        </script>
+        <% end %>
+      </ul>
+    </div>
+    <!-- /.portfolio -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->
+<% end %>

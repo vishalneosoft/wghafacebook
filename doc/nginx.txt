@@ -1,0 +1,13 @@
+# https://nginx.org
+
+rvmsudo passenger-install-nginx-module
+/home/live/nginx-1.13.10
+--with-http_gzip_static_module --with-http_v2_module --with-openssl='/home/live/openssl-1.0.2n'
+
+https://raymii.org/s/tutorials/Strong_SSL_Security_On_nginx.html
+
+https://nginx.org/en/download.html
+  https://nginx.org/download/nginx-1.13.10.tar.gz
+
+https://www.openssl.org/source/
+  https://www.openssl.org/source/openssl-1.0.2n.tar.gz

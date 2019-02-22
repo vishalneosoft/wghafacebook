@@ -1,0 +1,45 @@
+<% content_for :title do %>
+<%= t(:about_title, :scope => 'helpers.legal', :area => @current_area.name) %>
+<% end %>
+
+<% content_for :description do %>
+<%= t(:imprint_meta_description, :scope => 'helpers.legal', :area => @current_area.name, extension: 'de') %>
+<% end %>
+
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1><%= "Über www.wasgehtheuteab.de" %></h1>
+    <div class="collapse navbar-collapse pull-right">
+    </div>
+  </div>
+</div>
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        <p>Seit Oktober 2009 sammeln wir Flyer zu Partys, Ausstellungen, Vernissagen, Festivals, Lesungen und ähnlichem</p>
+        <p>Einfach solls sein, für die Spontanen, die morgens noch nicht wissen wo was gegen Abend los ist. Der wichtigste Tag zum feiern, prominent auf der Titelseite: Heute – jeden Tag aufs Neue. </p>
+        <p>Der Plattenladen als Sammelstelle für Flyer ist schon vor Jahren abgelöst worden. Wir leben in der Zukunft und wollen ein altes Relikt mitnehmen. Deswegen gibts bei uns alle Flyer übersichtlich auf einer Seite – kein mühsames Suchen mehr in dunklen Bars, Cafes oder sonstigen Plätzen. </p>
+        <p>Glücklicherweise gibt es mehr als einen Weg zu erfahren, wohin man Abends weggehen kann. Es sollte für jeden was dabei sein und für ganz Kurzentschloßene funktioniert das ganze natürlich auch auf allen gängigen Smartphones. Einfach ausprobieren. </p> <ul>
+        <li><%= link_to "Webseite: www.wasgehtheuteab.de", "https://www.wasgehtheuteab.de" %></li>
+        <li><%= link_to "Kurz-URL: www.wgha.de", "https://www.wgha.de" %></li>
+        <li><%= link_to 'Mobile Webseite', "https://www.wasgehtheuteab.de" %></li>
+      </ul>
+      <h5>Events werden von jedermann eingestellt</h5>
+      <p>Events können ohne weitere Kosten einfach über <%= link_to 'diesen Link', upload_index_url %> eingestellt werden. </p>
+      <p>Ihr erstellt dafür einen Event auf Facebook und kopiert den Link zum Event. Auf der <%= link_to 'Upload-Seite von wgha.de', upload_index_url %> kannst du den Link zum Event auf Facebook in das Feld einfügen, absenden und fertig.</p>
+      <p>Stellt eure Flyer am besten so früh wie möglich ein. So ist euer Flyer nicht nur für Besucher der Seite früher zu entdecken, sondern auch für Suchmaschinen. </p>
+      <p>Wichtig ist, die Location auf Facebook richtig anzulegen. Wie das geht erfährst du auf der Facebook Hilfe Seite <%= link_to "https://www.facebook.com/help/175921872462772", "https://www.facebook.com/help/175921872462772" %>.</p>
+      <p>Uhrzeit und Datum des Events richtig angeben. Versteht sich von selber, oder? </p>
+      <p>Beachte bitte <%= link_to "unsere AGB's", tos_url %></p>
+
+      <h5>… und zum Schluss!</h5>
+      <p>Wir wünschen euch viel Spass bei finden von tollen Veranstaltungen und beim weggehen. Falls euch die Seite gefällt lasst es und wissen und schreibt uns über <%= link_to 'das Kontaktformular', contact_index_url %> – wir freuen uns immer über Post! </p>
+      <!-- /.span9 -->
+    </div>
+    <!-- /.row -->
+  </div>
+</div>
+</div>

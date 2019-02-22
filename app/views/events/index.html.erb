@@ -1,0 +1,32 @@
+<% content_for :title do %>
+<%= t(:whats_up_in, :scope => 'helpers.events', :area => @current_area.name, :date => I18n.localize(@time, :format => :title)) %> - <%= I18n.localize(@time, :format => :index) %>
+<% end %>
+
+<% content_for :description do %>
+Partys &amp; Konzerte am <%= I18n.localize(@time, :format => :index) %> - Ausgehen im Nachtleben von <%= @current_area.name %>. Wir zeigen dir auf www.wgha.de wohin man abends ausgehen kann.
+<% end %>
+
+<% content_for :facebook_property do %>
+<meta content="website" property="og:type"/>
+<meta content='<%= t(:whats_up_in, :scope => 'helpers.events', :area => @current_area.name, :date => I18n.localize(@time, :format => :title)) %>' property='og:title'>
+<meta content='was geht heute ab' property='og:site_name'>
+<meta content='<%= events_url %>' property='og:url'>
+<meta content='Wir zeigen dir auf www.wgha.de wohin man abends ausgehen kann.' property='og:description'>
+<meta content='<%= image_url 'wgha.de.png' %>' property='og:image'>
+<meta property="og:image:type" content="image/png">
+<% end %>
+
+<% content_for :hreflang do %>
+<link rel="alternate" href="<%= events_url %>" hreflang="de-de" />
+<% end %>
+
+<%= render "partials/events_display", :display_title => "Was geht heute am #{I18n.localize(@time, :format => :index)} in #{@current_area.name}?" %>
+
+<script type="application/ld+json">
+  {
+    "@context":"http://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+    {"item":{"@id":"<%= root_url(area: nil) %>","name":"<%= "Alle Städte" %> "},"@type":"ListItem","position":1},
+    {"item":{"@id":"<%= events_url(area: @current_area.domain) %>","name":"<%= @current_area.name %>"},"@type":"ListItem","position":2}]}
+</script>

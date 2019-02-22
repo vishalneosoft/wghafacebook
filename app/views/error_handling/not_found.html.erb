@@ -1,0 +1,29 @@
+<% content_for :meta_refresh do %>
+<meta http-equiv="refresh" content="10;url=<%= events_url %>">
+<% end %>
+
+<% content_for :title do %>
+Es ist ein Fehler aufgetreten
+<% end %>
+
+<% content_for :description do %>
+<%= t(:error_message, :scope => 'helpers.upload') %>
+<% end %>
+
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1>404 - Den Event <span class="color-text">gibt es leider nicht</span> :-(</h1>
+    <div class="collapse navbar-collapse pull-right">
+    </div>
+  </div>
+</div>
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <p>Leider konnten wir den Event den du suchst nicht bei uns finden. <% if !@events_preview.nil? %>Hier sind einige der anderen Events für diesen Tag.<% end %> <%= link_to "Alle Events findest du hier", events_url %>.
+    </p>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->

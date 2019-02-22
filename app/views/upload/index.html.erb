@@ -1,0 +1,9 @@
+<% content_for :title do %>
+<%= t(:index_title, :scope => 'helpers.upload') %>
+<% end %>
+
+<% content_for :description do %>
+<%= t(:meta_description, :scope => 'helpers.upload', :area => @current_area.name, extension: 'de') %>
+<% end %>
+
+<%= render "partials/empty_state", :empty_state_title => 'Party einstellen' %>

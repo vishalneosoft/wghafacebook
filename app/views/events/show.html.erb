@@ -1,0 +1,166 @@
+<% content_for :title do %>
+<%= t(:whats_up_show, :scope => 'helpers.events', :area => @current_area.name, :city => @event.city, :date => I18n.localize(@event.start_time, :format => :title), :event => @event.name, :location => @event.location) %>
+<% end %>
+
+<% content_for :description do %>
+<%= t(:meta_description_event, :area => @current_area.name, :event_name => @event.name, :date => @event.start_time.strftime("%d.%m.%Y"), :location => @event.location, :tags => nil, :scope => 'helpers.events', extension: 'de') %>
+<% end %>
+
+<% content_for :facebook_property do %>
+<meta content="website" property="og:type"/>
+<meta content='<%= @event.name %>' property='og:title'/>
+<meta content='was geht heute ab' property='og:site_name'/>
+<meta content='<%= event_url( area: @event.area, uuid: @event.uuid) %>' property='og:url'/>
+<meta content='<%= t(:meta_description_event, :area => @current_area.name, :event_name => @event.name, :date => @event.start_time.strftime("%d.%m.%Y"), :location => @event.location, :tags => nil, :scope => 'helpers.events', extension: 'de') %>' property='og:description'/>
+<meta content='<%= @event.photo.url %>' property='og:image'/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:updated_time" content="<%= @event.updated_at.iso8601 %>"/>
+<meta property="og:type" content="events.event"/>
+<meta property="og:locale" content="de_DE">
+<% end %>
+
+<% content_for :hreflang do %>
+<link rel="alternate" href="<%= event_url(area: @event.area, uuid: @event.uuid) %>" hreflang="de-de" />
+<link rel="alternate" type="text/calendar" title="Calendar" href="<%= event_ics_path( area: @event.area, uuid: @event.uuid) %>" />
+<link rel="amphtml" href="<%= event_amp_url(area: @event.area, uuid: @event.uuid) %>" />
+<link rel="canonical" href="<%= event_url(area: @event.area, uuid: @event.uuid) %>" />
+<meta name="keywords" content="Was geht heute ab, <%= @event.name %>, <%= @event.name %> party, <%= @event.name %> <%= @event.city %>, <%= @event.name %> <%= @event.city %> party"/>
+
+
+
+<% end %>
+
+<div class="offset">
+</div>
+<div class="dark-wrapper">
+  <div class="container inner">
+
+    <div class="row">
+      <div class="col-sm-3">
+        <ul class="item-details">
+          <li><h1><%= @event.name %></h1></li>
+        </ul>
+        <ul class="item-details">
+          <li><%= I18n.localize(@event.start_time, :format => :event) %></li>
+          <li>
+            <span>
+              <%= @event.location %>
+            </span><br/>
+            <span>
+              <span>
+                <%= @event.street %>
+              </span>
+              <br/>
+              <span>
+                <%= @event.zipcode %>
+              </span>
+              <span>
+                <%= @event.city %>
+              </span>
+            </span>
+          </li>
+        </ul>
+        <ul class="item-details">
+          <li></li>
+          <li><%= google_maps_link(@event, 'Auf Google Maps anzeigen') %></li>
+          <li><%= link_to 'Zum Kalender hinzufügen', event_ics_path( area: @event.area, uuid: @event.uuid) %></li>
+          <li><%= link_to 'Permanenter Link zu diesem Event', event_path( area: @event.area, uuid: @event.uuid) %></li>
+          <li><%= link_to 'Event auf Facebook anzeigen', @event.website, rel: "nofollow", target: '_blank' %></li>
+        </ul>
+        <ul class="item-details">
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <!-- /.col-sm-4 -->
+      <div class="col-sm-8">
+        <div class="owl-slider-wrapper">
+          <div class="item">
+            <%= image_tag(@event.photo.external_cache_path, alt: t(:alt_text_for_image, event_name: @event.name, location_name: @event.location, area: @current_area.name)) %>
+          </div>
+
+          <div>
+            <%= raw @event.description_html %>
+          </div>
+        </div>
+        <%= raw soundcloud(@event.description) %>
+
+      </div>
+      <!-- /.col-sm-8 -->
+
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div><!-- /.dark-wrapper -->
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="section-title text-center">
+      <h2>Was geht noch?</h2>
+      <span class="icon"><i class="icon-picture"></i></span>
+    </div>
+    <div class="owl-portfolio owlcarousel carousel-th">
+      <% for event in @events_preview %>
+      <% next if !event.photo %>
+      <div class="item">
+        <a href="<%= event_url(uuid: event.uuid) %>">
+          <figure class="icon-overlay medium icn-link"><%= image_tag(event.photo.external_cache_thumb_path, :size => '333x222' , :alt => t(:alt_text_for_image, :event_name => h(event.name), :location_name => h(event.location), :area => @current_area.name)) %>
+          </figure>
+          <div class="image-caption">
+            <h3><%= event.name %></h3>
+            <span class="meta"><%= event.start_time.strftime("%H:%M") %>Uhr@<%= event.location %></span>
+          </div>
+        </a>
+      </div>
+      <!-- /.item -->
+      <% end %>
+
+    </div>
+    <!-- /.owlcarousel -->
+  </div>
+</div>
+<script type="application/ld+json">
+  {
+    "@context":"http://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+    {"item":{"@id":"<%= root_url(area: nil) %>","name":"<%= "Alle Städte" %> "},"@type":"ListItem","position":1},
+    {"item":{"@id":"<%= events_url(area: @current_area.domain) %>","name":"<%= @current_area.name %>"},"@type":"ListItem","position":2},
+    {"item":{"@id":"<%= event_url(area: @current_area.domain, uuid: @event.uuid) %>","name":"<%= @event.name %>"},"@type":"ListItem","position":3}]}
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Event",
+      "name" : "<%= @event.name %>",
+      "startDate" : "<%= @event.start_time.utc.iso8601 %>",
+      "endDate" : "<%= (@event.start_time + 4.hours).utc.iso8601 %>",
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "<%= @event.name %>"
+      },
+      "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "price": "0",
+        "priceCurrency": "EUR",
+        "url": "<%= event_url( area: @event.area, uuid: @event.uuid) %>",
+        "validFrom": "<%= @event.start_time.utc.iso8601 %>"
+      },
+      "location" : {
+        "@type" : "Place",
+        "name" : "<%= @event.location %>",
+        "address" : {
+          "@type" : "PostalAddress",
+          "addressCountry":"DE",
+          "streetAddress" : "<%= @event.street %>",
+          "addressLocality" : "<%= @event.city %>",
+          "postalCode" : "<%= @event.zipcode %>"
+        }
+      },
+      "image" : "<%= @event.photo.url %>",
+      "description" : "<%= @event.description.gsub("\n", " ") if @event.description %>",
+      "url" : "<%= event_url( area: @event.area, uuid: @event.uuid) %>"
+    }
+  </script>

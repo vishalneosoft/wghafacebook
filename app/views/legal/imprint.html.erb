@@ -1,0 +1,43 @@
+<% content_for :title do %>
+<%= t(:imprint_title, :scope => 'helpers.legal', :area => @current_area.name) %>
+
+<% end %>
+
+<% content_for :description do %>
+<%= t(:imprint_meta_description, :scope => 'helpers.legal', :area => @current_area.name, extension: 'de') %>
+<% end %>
+
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1>Impressum</h1>
+    <div class="collapse navbar-collapse pull-right">
+    </div>
+  </div>
+</div>
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <aside class="col-sm-5">
+        <div class="sidebox widget">
+          <address>
+            <strong>NAME</strong><br>
+            STRASSE<br>
+            POSTLEITZAHL ORT<br>
+            <abbr title="Phone">Telefon:</abbr> TELEFONNUMMER<br>
+            <abbr title="Email">E-Mail:</abbr> <a href="mailto:info@wasgehtheuteab.de">info@wasgehtheuteab.de</a>
+          </address>
+          <h3>Löschungsanträge</h3>
+          <p>Löschanträge für Events bitte per E‑Mail senden und den entsprechenden Event-Link auf wasgehtheuteab.de, sowie einen Grund für die Löschung angeben.</p>
+        </div>
+        <!-- /.widget -->
+      </aside>
+      <!-- /.span4 -->
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->

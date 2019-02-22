@@ -1,0 +1,42 @@
+<% content_for :meta_refresh do %>
+<meta http-equiv="refresh" content="10;url=<%= events_url %>">
+<% end %>
+
+<% content_for :title do %>
+Es ist ein Fehler aufgetreten
+<% end %>
+
+<% content_for :description do %>
+<%= t(:error_message, :scope => 'helpers.upload') %>
+<% end %>
+
+<div class="offset"></div>
+<div class="light-wrapper page-title">
+  <div class="container inner">
+    <h1>Es ist ein Fehler aufgetreten</h1>
+    <div class="collapse navbar-collapse pull-right">
+    </div>
+  </div>
+</div>
+
+<div class="dark-wrapper">
+  <div class="container inner">
+    <div class="row">
+      <aside class="col-sm-6">
+        <div class="sidebox widget">
+          <h3>Probiere es einfach später noch einmal!</h3>
+          <p>Eine Fehlermeldung wurde automatisch an uns geschickt.
+        Wenn der Fehler in den nächsten Stunden bestehen bleibt, dann melde dich bei uns über das Kontaktformular.</p>
+      <p><%= link_to 'Zurück zu den Partys', area_url %>
+        </p>
+        </div>
+        <!-- /.widget -->
+      </aside>
+      <!-- /.span4 -->
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.dark-wrapper -->

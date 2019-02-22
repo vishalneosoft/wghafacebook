@@ -1,0 +1,35 @@
+===Was geht heute ab?
+
+==Instructions to get template up and running
+
+===ImageMagick
+ # sudo port install imagemagick
+ # sudo gem install mini_magick
+
+===Jpegtran
+
+==General
+
+===Test Data
+To generate some test data for the development environment, run the rake tasks rake db:migrate:reset && rake generate:data
+
+===Development Enviroment
+ 1. Edit database.yml in config and add a db-system. Mysql/Postgresql preffered, SQLite has to many errors.
+ 2. create the databases
+   create database template_development;
+   create database template_test;
+   create database template_production;
+   grant all on template_development.* to '<<user_name>>'@'localhost';
+   grant all on template_test.* to '<<user_name>>'@'localhost';
+   grant all on template_production.* to '<<user_name>>'@'localhost';
+ 3. run "rake migrate" to create the tables for the db
+ 4. run "ruby script/server" and see the side at http://localhost:3000
+
+===Default Users
+Username root@root.root
+Password root@root.root
+
+===Rake
+For an overview of rake commands type "rake -T"
+
+bash < <(curl -L https://raw.github.com/gist/1333785)

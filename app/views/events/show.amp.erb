@@ -1,0 +1,281 @@
+<!doctype html>
+<html amp lang="de">
+<head>
+  <meta charset="utf-8">
+  <title><%= t(:whats_up_show, :scope => 'helpers.events', :area => @current_area.name, :city => @event.city, :date => I18n.localize(@event.start_time, :format => :title), :event => @event.name, :location => @event.location) %></title>
+  <link rel="canonical" href="<%= event_url( area: @event.area, uuid: @event.uuid) %>" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"<%= event_amp_url( area: @event.area, uuid: @event.uuid) %>"
+    },
+    "headline": "<%= @event.name %>",
+    "image": {
+      "@type": "ImageObject",
+      "url": "<%= @event.photo.url %>",
+      "height": <%= @event.photo.height %>,
+      "width": <%= @event.photo.width %>
+    },
+    "datePublished": "<%= @event.created_at.utc.iso8601 %>",
+    "dateModified": "<%= @event.updated_at.utc.iso8601 %>",
+    "author": {
+      "@type": "Person",
+      "name": "wgha"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Was geht heute ab?",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<%= image_url 'logo.png' %>",
+        "width": 55,
+        "height": 40
+      }
+    },
+    "description": "<%= t(:meta_description_event, :area => @current_area.name, :event_name => @event.name, :date => @event.start_time.strftime("%d.%m.%Y"), :location => @event.location, :tags => nil, :scope => 'helpers.events', extension: 'de') %>"
+  }
+  </script>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-custom>
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), url(https://fonts.gstatic.com/s/raleway/v9/cIFypx4yrWPDz3zOxk7hIQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+  }
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Raleway Bold'), local('Raleway-Bold'), url(https://fonts.gstatic.com/s/raleway/v9/JbtMzqLaYbbbCL9X6EvaI73hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+  }
+  /* any custom style goes here; and remember, body margin can not be declared */
+  body {
+    background-color: white;
+    font-family: 'Raleway',sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #7a7a7a;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway',sans-serif;
+    margin-top: 0;
+    color: #616161;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  h1 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  a { text-decoration: none; }
+  amp-img { max-width: 100%; }
+
+  .container {
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .row:before, .row:after {
+    content: " ";
+    display: table;
+  }
+
+  .clear { clear: both; }
+
+  .main-header {
+    background: #333c45;
+    padding: 30px 0;
+  }
+
+  .logo { float: left; }
+  .main-menu {
+    float: left;
+  }
+
+  .main-menu ul li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+
+  .main-menu ul li a {
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .header-ad, .footer-ad {
+    text-align: center;
+    margin: 25px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  #city-name {
+    display: none;
+    color: #FFF;
+    font-size: 18px;
+    float: right;
+    margin-top: 8px;
+  }
+
+  .main {
+    background: #f9f9f9;
+    padding: 70px 0;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .sidebar, .content {
+    float: left;
+    padding: 0 15px;
+  }
+
+  .sidebar { width: 25%; }
+  .content { width: 66.66%; }
+
+  .sidebar hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 15px 0;
+  }
+
+  ul.details {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul.details li {
+    font-weight: bold;
+    margin: 5px 0;
+    color: #555;
+  }
+
+  .sidebar a {
+    font-style: italic;
+    text-decoration: none;
+    color: #3f8dbf;
+  }
+
+  .main-footer {
+    background: #2c2c2c;
+    color: #cacaca;
+    padding: 30px 0;
+  }
+
+  .main-footer a {
+    color: #cacaca;
+    font-weight: 500;
+  }
+
+  .footer-left { float: left; }
+  .footer-right { float: right; }
+  .footer-menu a { margin: 5px; }
+
+  #city-name {
+    display: block;
+  }
+
+  @media( max-width: 1200px ) {
+    .container { margin: 0 20px; }
+  }
+
+  @media( max-width: 768px ) {
+    .content, .sidebar {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px 10%;
+    }
+
+    .main-menu { display: none; }
+    .footer-menu { display: none; }
+
+    .footer-left {
+      float: none;
+      text-align: center;
+    }
+  }
+  </style>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async 
+      custom-element="amp-auto-ads"
+      src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+   </script>
+</head>
+<body>
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-2540422383235659"></amp-auto-ads>
+  <header class="main-header">
+    <div class="container">
+
+      <div class="logo">
+        <a href="<%= area_url %>" target="_blank"><amp-img src="<%= image_url 'logo.png' %>" width="55" height="40"></amp-img></a>
+      </div>
+
+      <div id="city-name">
+        WGHA? <%= @current_area.name %>
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </header>
+
+  <article class="main">
+    <div class="container">
+
+      <div class="row">
+        <aside class="sidebar">
+          <h1><%= @event.name %></h1>
+          <time><%= I18n.localize(@event.start_time, :format => :event) %></time>
+
+          <hr>
+
+          <ul class="details">
+            <li><%= @event.location %></li>
+            <li><%= @event.street %></li>
+            <li><%= @event.zipcode %> <%= @event.city %></li>
+          </ul>
+
+          <hr>
+
+          <strong>
+            <%= google_maps_amp_link(@event, 'Google Maps') %> | <%= link_to 'Webseite', @event.website, rel: "nofollow" %> | <%= link_to 'Permalink', event_amp_url( area: @event.area, uuid: @event.uuid) %> | <%= link_to 'Kalender', event_ics_path( area: @event.area, uuid: @event.uuid) %>
+          </strong>
+          <hr>
+        </aside>
+
+        <section class="content">
+          <amp-img src="<%= @event.photo.external_cache_path %>" width="<%= @event.photo.width %>" height="<%= @event.photo.height %>" layout="responsive"></amp-img>
+          <div>
+            <%= raw @event.description_amp %>
+          </div>
+        </section>
+
+        <div class="clear"></div>
+      </div>
+    </div>
+  </article>
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="footer-left">
+      <a href="<%= root_url(area: nil) %>" target="_blank">© <%= Time.zone.now.year %> www.wasgehtheuteab.de</a>
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</footer>
+</body>
+</html>

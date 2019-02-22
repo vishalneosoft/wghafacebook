@@ -1,0 +1,296 @@
+de:
+  or: oder
+  alt_text_for_image: "%{event_name} - %{location_name} - %{area}"
+  back: Zurück
+  send: Senden
+  cancel: abbrechen
+  yesterday: gestern
+  today: heute
+  soon: demnächst
+  missing_field_while_uploading: Ein erforderliches Feld ist nicht ausgefüllt!
+  continue: Weiter
+  should_not_be_empty: darf nicht leer sein
+  needs_to_be_a_picture: "muss vom Datentyp ein Bild sein, z.B. JPG, PNG oder GIF"
+  id: "%{id}-%{event_name}-party-im-%{location_name}-am-%{event_date}"
+  frankfurt_am_main: Frankfurt am Main
+  offenbach: Offenbach
+  darmstadt: Darmstadt
+  wiesbaden: Wiesbaden
+  aschaffenburg: Aschaffenburg
+  bad_homburg: Bad Homburg
+  mainz: Mainz
+  mühlheim: Mühlheim
+  layouts:
+    public:
+      this_flyer_does_not_exist: Der Flyer existiert leider nicht.
+      imprint: Impressum
+      about: Über wgha.de
+      privacy_statement: Datenschutz
+      tos: AGB
+      contact: Kontakt
+      feedback: Feedback
+      whats_up: was geht heute
+      in: in
+      home_link: Heute
+      post_link_at: Link posten bei
+      back_to_all_flyers_from: "Zurück zu allen Flyern von %{day}"
+      soon: Demnächst
+  partials:
+    header:
+      rss_feed: <abbr="Really Simple Syndication">RSS</abbr>
+      upload_flyer_link: Flyer hochladen
+      today: heute
+      soon: Demnächst
+      home_link: Heute
+      whats_up: was geht heute ab
+      in: in
+      back_to_all_flyers_from: "Zurück zu allen Flyern von %{day}"
+    footer:
+      rss_feed: <abbr="Really Simple Syndication">RSS</abbr>
+      imprint: Impressum
+      about: Über wgha.de
+      privacy_statement: Datenschutz
+      contact: Kontakt
+      tos: AGB
+    error_messages:
+      body: "Bitte überprüfe die folgenden Felder:"
+
+  upload:
+    index:
+      upload_a_new_flyer: "Lade einen Flyer für %{area} hoch"
+      event_date: Datum der Veranstaltung
+      location_name: Location
+      address_street: Straße
+      address_zipcode: Postleitzahl
+      temp_address_city: Stadt
+      website: Webseite
+      event_name: Name der Veranstaltung
+      event_date: Datum der Veranstaltung
+      location_name: Location
+      description: Beschreibung
+      address_street: Straße
+      address_zipcode: Postleitzahl
+      temp_address_city: Stadt
+      flyer_frontside: Flyer Vorderseite
+      website: Webseite
+      step: Schritt 2/2
+  contact:
+    index:
+      send_us_a_message: Schicke uns eine Nachricht
+      the_message: Die Nachricht
+      your_email: Deine E-Mail
+      subject: Betreff
+      message: Nachricht
+    finish:
+      thanks_for_the_message: Danke für die Nachricht!
+      we_will_contact_you_soon: Wir werden uns so schnell es geht melden!
+
+  legal:
+    imprint:
+      imprint: Impressum
+      address: Adresse
+      phone: Telefon
+      email: E-Mail
+      website: Webseite
+
+  events:
+    index:
+      no_party: Heute gibt es keine Veranstaltungen mit Flyer oder Tickets
+      maybe_more_party_here: Mehr Party in deiner Umgebung
+      soon: Demnächst
+
+    show:
+      google_maps_link: Wegbeschreibung
+      post_link_at: Event-Link posten bei
+      website: Webseite
+      previous_flyer: Vorheriger Flyer
+      next_flyer: Nächster Flyer
+
+  helpers:
+    contact:
+      send_us_a_message: Schicke eine Nachricht an uns
+      thank_you_for_your_message: Danke für deine Nachricht
+      meta_description: "Schicke uns eine Nachricht. Tickets und alle Flyer von %{area}. Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+    events:
+      whats_up_in: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}"
+      whats_up_holiday: "%{holiday_name} reinfeiern %{date} - Partys & Konzerte - Ausgehen im Nachtleben von %{area}"
+      whats_up_future: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}"
+      whats_up_show: "%{event} am %{date} - %{location} - %{city}"
+      meta_description: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}. Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+      meta_description_event: "%{location} - %{date}. %{event_name}. Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+    legal:
+      imprint_title: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}: Impressum"
+      imprint_meta_description: "Impressum - Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+      privacy_title: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}: Datenschutz"
+      privacy_meta_description: "Datenschutz - Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+      tos_title: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}: AGB"
+      tos_meta_description: "AGB - Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+      about_title: "Partys & Konzerte - Ausgehen im Nachtleben von %{area}: Über diese Webseite"
+      about_meta_description: "Über uns - Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+    upload:
+      index_title: Lade einen neuen Flyer hoch
+      finish_title: Danke für deinen Flyer
+      meta_description: "Trage deine Veranstaltung ein. Partys & Konzerte - Ausgehen im Nachtleben von %{area}. Wir zeigen dir auf www.wgha.%{extension} wohin man abends ausgehen kann."
+      error_message: "Deine Veranstaltung wurde leider nicht gefunden. Finde hier weitere Veranstaltungen für deine Stadt."
+
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%e. %b"
+      long: "%e. %B %Y"
+      only_day: "%e"
+      index: '%A, %d.%m.%Y'
+      future: "%a %d.%m"
+      facebook: '%A'
+      title: '%A (%d.%m.%Y)'
+    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
+    abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    am: "vormittags"
+    pm: "nachmittags"
+    formats:
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
+      event: '%a, %d.%m.%Y ab %H:%M Uhr'
+      facebook: '%A'
+      index: '%A, %d.%m.%y'
+      future: "%a %d.%m"
+      title: '%A (%d.%m.%Y)'
+      date: "%d.%m.%Y"
+      day: "%A"
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " und "
+      last_word_connector: " und "
+
+  activemodel:
+    errors:
+      template:
+        header:
+          one:    "%{model} konnte nicht gespeichert werden: 1 Fehler"
+          other:  "%{model} konnte nicht gespeichert werden: %{count} Fehler"
+        body: "Bitte überprüfe die folgenden Felder:"
+
+      messages:
+        inclusion: "ist kein gültiger Wert"
+        exclusion: "ist nicht verfügbar"
+        invalid: "ist nicht gültig"
+        confirmation: "stimmt nicht mit der Bestätigung überein"
+        accepted: "muss akzeptiert werden"
+        empty: "muss ausgefüllt werden"
+        blank: "muss ausgefüllt werden"
+        too_long: "ist zu lang (nicht mehr als %{count} Zeichen)"
+        too_short: "ist zu kurz (nicht weniger als %{count} Zeichen)"
+        wrong_length: "hat die falsche Länge (muss genau %{count} Zeichen haben)"
+        taken: "ist bereits vergeben"
+        not_a_number: "ist keine Zahl"
+        greater_than: "muss größer als %{count} sein"
+        greater_than_or_equal_to: "muss größer oder gleich %{count} sein"
+        equal_to: "muss genau %{count} sein"
+        less_than: "muss kleiner als %{count} sein"
+        less_than_or_equal_to: "muss kleiner oder gleich %{count} sein"
+        odd: "muss ungerade sein"
+        even: "muss gerade sein"
+
+    models:
+      flyer: Flyer
+      contact: Nachricht
+    attributes:
+      flyer:
+        event_name: Name der Veranstaltung
+        event_date: Datum der Veranstaltung
+        frontside_image: Flyer Vorderseite
+        frontside_image_content_type: Flyer Vorderseite
+        location_name: Name der Location
+        address_street: Straße
+        address_zipcode: Postleitzahl
+        temp_address_city: Stadt
+        website: Webseite
+        description: Beschreibung
+        email_from_uploader: E-Mail
+      contact:
+        subject: Betreff
+        text: Nachricht
+        email: E-Mail
+
+  activemodel:
+    attributes:
+      id_token:
+        token: 'Facebook Event ID'
+      contact:
+        subject: Betreff
+        text: Nachricht
+        email: E-Mail
+    errors:
+      models:
+        id_token:
+          attributes:
+            token:
+              blank: "muss ausgefüllt werden"
+              not_a_number: "darf keine Buchstaben enthalten. Nur die Zahl."
+              too_long: "ist zu lang (nicht mehr als %{count} Zeichen)"
+        contact:
+          blank: "muss ausgefüllt werden"
+          invalid: "ist nicht gültig"
+
+  activerecord:
+    attributes:
+      image:
+        content_type: Flyer
+      flyer:
+        event_name: Name der Veranstaltung
+        event_date: Datum der Veranstaltung
+        frontside_image: Flyer Vorderseite
+        frontside_image_content_type: Flyer Vorderseite
+        location_name: Name der Location
+        address_street: Straße
+        address_zipcode: Postleitzahl
+        temp_address_city: Stadt
+        website: Webseite
+        description: Beschreibung
+        email_from_uploader: E-Mail
+    errors:
+      models:
+        event:
+          attributes:
+            city:
+              inclusion: "wird nicht unterstützt"
+        subscription:
+          attributes:
+            email:
+              blank: "muss ausgefüllt werden"
+              taken: "ist bereits vergeben"
+              invalid: "ist nicht gültig"
+        flyer:
+          attributes:
+            genre:
+              blank: "muss ausgefüllt werden"
+            event_name:
+              blank: "muss ausgefüllt werden"
+            location_name:
+              blank: "muss ausgefüllt werden"
+            address_street:
+              blank: "muss ausgefüllt werden"
+            address_zipcode:
+              blank: "muss ausgefüllt werden"
+            temp_address_city:
+              blank: "muss ausgefüllt werden"
+            description:
+              blank: "muss ausgefüllt werden"
+            email_from_uploader:
+              invalid: "ist nicht gültig"
+
+  will_paginate:
+    previous_label: "Vorherige"
+    next_label: "Nächste"
+    page_gap: '...'

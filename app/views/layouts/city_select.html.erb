@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title><%= yield :title %></title>
+  <meta name='description' content='<%= yield :description %>' >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= stylesheet_link_tag 'trimmed' %>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag 'html5shiv.js', async: Rails.env.production? %>
+  <%= javascript_include_tag 'https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js', async: Rails.env.production? %>
+  <![endif]-->
+
+  <link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>">
+  <link href='<%= image_path 'favicon.ico' %>' rel='shortcut icon' type='image/x-icon'>
+  <link href='<%= image_path 'favicon.ico' %>' rel='icon' type='image/vnd.microsoft.icon'>
+
+  <link rel="apple-touch-icon" href="<%= image_path 'apple-touch-icon.png' %>" />
+  <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-touch-icon-57x57.png' %>" />
+  <link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-touch-icon-72x72.png' %>" />
+  <link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'apple-touch-icon-114x114.png' %>" />
+  <link rel="apple-touch-icon" sizes="144x144" href="<%= image_path 'apple-touch-icon-144x144.png' %>" />
+  <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-touch-icon-60x60.png' %>" />
+  <link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-touch-icon-120x120.png' %>" />
+  <link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'apple-touch-icon-76x76.png' %>" />
+  <link rel="apple-touch-icon" sizes="144x144" href="<%= image_path 'apple-touch-icon-152x152.png' %>" />
+  <%= yield :hreflang %>
+</head>
+
+<body class="full-layout">
+  <div class="body-wrapper">
+
+    <%= yield %>
+
+    <footer class="black-wrapper">
+      <div class="sub-footer">
+        <div class="container">
+          <p class="pull-left"><%= link_to "#{request.subdomain}.wasgehtheuteab.de", root_url(area: nil) %></p>
+          <ul class="footer-menu pull-right">
+            <li><%= link_to 'Kontakt', imprint_url(area: Area.first.domain) %></li>
+            <li><%= link_to 'Impressum', imprint_url(area: Area.first.domain) %></li>
+            <li><%= link_to 'Datenschutz', privacy_url(area: Area.first.domain) %></li>
+            <li><%= link_to 'AGB', tos_url(area: Area.first.domain) %></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- /footer -->
+  </div>
+  <!-- /.body-wrapper -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Was geht heute ab?",
+    "alternateName": "wgha",
+    "url": "<%= root_url(area: nil) %>"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "<%= root_url(area: nil) %>",
+    "logo": "<%= image_url 'logo.png' %>"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"http://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+    {"item":{"@id":"<%= root_url(area: nil) %>","name":"<%= "Alle Städte" %> "},"@type":"ListItem","position":1}]}
+</script>
+</body>
+</html>
